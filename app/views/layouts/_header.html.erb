@@ -1,16 +1,19 @@
-<header class ="navbar navbar-fixed_top navbar-loght" style="background-color: #e3f2fd;">
+<header class ="navbar navbar-fixed_top navbar-light" style="background-color: #e3f2fd;">
   <div class ="container">
     <nav>
       <%= link_to "walker", '#', id: "logo" %>
-      <ul class=" nav navbar-nav navbar-right">
-        <li class="nav-item active">
+      <ul class="navbar nav navbar-right">
+        <li class="p-2 text-dark">
           <%= link_to "Home", '#' %>
         </li>
-        <li class="nav-item">
+        <li class="p-2 text-dark">
           <%= link_to "about", '#' %>
         </li>
-        <li>
-          <%= link_to "Sign Up", '#', class: "btn btn-sm btn-primary" %>
+        <li class="p-2 text-dark">
+          <%= link_to "Sign Up", '#', class: "btn btn-sm btn-outline-primary" %>
+        </li>
+        <li class="p-2 text-dark">
+          <%= link_to "login", '#', class: "btn btn-primary" %>
         </li>
       </ul>
     </nav>
