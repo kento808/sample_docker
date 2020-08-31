@@ -1,20 +1,25 @@
 <header class ="navbar navbar-fixed_top navbar-light" style="background-color: #e3f2fd;">
   <div class ="container">
     <nav>
-      <%= link_to "walker", '#', id: "logo" %>
+      <%= link_to "walker", root_path, id: "logo" %>
       <ul class="navbar nav navbar-right">
         <li class="p-2 text-dark">
-          <%= link_to "Home", '#' %>
+          <%= link_to "Home", root_path %>
         </li>
         <li class="p-2 text-dark">
           <%= link_to "about", '#' %>
         </li>
         <li class="p-2 text-dark">
-          <%= link_to "Sign Up", '#', class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
         </li>
-        <li class="p-2 text-dark">
-          <%= link_to "login", '#', class: "btn btn-primary" %>
-        </li>
+
+          <li class="p-2 text-dark">
+            <%= link_to "login", new_user_session_path, class: "btn btn-primary" %>
+          </li>
+          <li>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+          </li>
+
       </ul>
     </nav>
   </div>
