@@ -9,5 +9,9 @@ RSpec.describe 'Staticpages/home', type: :request do
       expect(response).to be_successful
       expect(response).to have_http_status 200
     end
+
+    it 'correct title' do
+      expect(response.body).to include "#{BASE_TITLE}"
+    end
   end
 end

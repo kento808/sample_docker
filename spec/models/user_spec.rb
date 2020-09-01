@@ -1,5 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:user) { build(:user) }
+  let(:invalid_user) { build(:user, username: 'ruby', email: '', password: 'password')}
+  let(:invalid_user2) { build(:user, username: "a" * 51, email: 'email', password: 'password')}
+
+  it 'valid user' do
+    user.valid?
+    expect(user).to be_valid
+  end
+
+  it 'invalid user' do
+    invalid_user.valid?
+    expect(invalid_user.errors[:email]).to include("can't be blank")
+  end
+
+  it 'invalid user maximum' do
+    invalid_user2.valid?
+    expect(invalid_user2.errors[:username]).to include("is too long (maximum is 50 characters)")
+  end
+
+
 end
