@@ -11,6 +11,14 @@
       <%= f.label :email %>
       <%= f.email_field :email %>
 
+      <%= f.label :profile, "自己紹介" %>
+      <%= f.text_area :profile, autofocus: true, value: "Hello world!" %>
+
+    <div class ="select">
+      <%= f.label :sex, "性別" %>
+      <%= f.select :sex, [["man", "man"], ["woman", "woman"]], include_blank: "plese select" %>
+    </div>
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 
