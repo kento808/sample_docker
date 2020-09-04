@@ -69,7 +69,12 @@ header {
   color: #777;
   text-decoration: none;
 }
-
+.dropdown {
+  margin-left: 10px;
+}
+.dropdown-menu li {
+  margin-left: 10px;
+}
 /* footer */
 footer {
   margin-top: 45px;
@@ -162,4 +167,32 @@ aside {
 
 .gravatar_edit {
   margin-top: 15px;
+}
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 20px 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
+  }
+}
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: none;
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
 }
