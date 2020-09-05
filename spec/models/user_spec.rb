@@ -12,17 +12,17 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it 'invalid user' do
+  it 'validates presence' do
     invalid_user.valid?
     expect(invalid_user.errors[:email]).to include("can't be blank")
   end
 
-  it 'invalid user maximum' do
+  it 'validates user maximum' do
     invalid_user2.valid?
     expect(invalid_user2.errors[:username]).to include("is too long (maximum is 50 characters)")
   end
 
-  it 'invalid user profile maximum' do
+  it 'validates user profile maximum' do
     invalid_user3.valid?
     expect(invalid_user3.errors[:profile]).to include("is too long (maximum is 500 characters)")
   end
