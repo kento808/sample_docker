@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:user) { build(:user) }
+  let(:user) { create(:user) }
   let(:invalid_user) { build(:user, username: 'ruby', email: '', password: 'password')}
   let(:invalid_user2) { build(:user, username: "a" * 51, email: 'email', password: 'password')}
   let(:invalid_user3) { build(:user, profile: "a" * 501) }
@@ -25,5 +25,10 @@ RSpec.describe User, type: :model do
   it 'validates user profile maximum' do
     invalid_user3.valid?
     expect(invalid_user3.errors[:profile]).to include("is too long (maximum is 500 characters)")
+  end
+
+  it 'dependent destroy for post' do
+    user.posts.create(content: 'content')
+    expect{ user.destroy }.to change{ Post.count }.by(-1)
   end
 end
