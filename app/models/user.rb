@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :profile,                  length: { maximum: 500 }
 
   has_many :posts, dependent: :destroy
+
+  def feed
+    Post.where("user_id = ?", id)
+  end
 end

@@ -1,3 +1,20 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= link_to "投稿する", new_post_path %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+
+<% else %>
 <div class ="main" >
   <main role="main" class="inner cover">
     <h1 class="cover-heading">沖縄観光のターミナル</h1>
@@ -8,6 +25,5 @@
   </main>
   <h1>StaticPages#home</h1>
   <p>Find me in app/views/static_pages/home.html.erb</p>
-
-
 </div>
+<% end %>
