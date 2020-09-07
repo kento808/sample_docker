@@ -1,19 +1,18 @@
 <% if user_signed_in? %>
-  <div class="row">
+<div class="row">
     <aside class="col-md-4">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
-      <section class="micropost_form">
-        <%= link_to "投稿する", new_post_path %>
+      <section>
+        <%= link_to '投稿する', new_post_path, class: "btn btn-info" %>
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Micropost Feed</h3>
+      <h3>最近の投稿</h3>
       <%= render 'shared/feed' %>
     </div>
-  </div>
-
+</div>
 <% else %>
 <div class ="main" >
   <main role="main" class="inner cover">
