@@ -10,6 +10,7 @@ RSpec.feature 'user_post', type: :system do
     click_on '投稿する'
     expect(current_path).to eq new_post_path
     fill_in 'Content', with: 'test'
+    attach_file 'Image', "app/assets/images/course-1.png"
     click_on 'Post'
     expect(page).to have_content '投稿しました'
   end

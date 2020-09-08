@@ -30,6 +30,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'active_storage_validations'
+gem 'image_processing'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

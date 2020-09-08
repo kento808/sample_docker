@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.image.attach(params[:post][:image])
     if @post.save
       flash[:success] = "投稿しました！"
       redirect_to root_url
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:notice] = "削除しました。"
+    flash[:info] = "削除しました。"
     redirect_to request.referrer || root_url
   end
 
