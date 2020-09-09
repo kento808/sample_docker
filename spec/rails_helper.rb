@@ -43,6 +43,7 @@ Capybara.register_driver :remote_chrome do |app|
 end
 
 RSpec.configure do |config|
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.include FactoryBot::Syntax::Methods
   config.include LoginMacros
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

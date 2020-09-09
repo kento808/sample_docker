@@ -6,6 +6,8 @@ RSpec.describe User, type: :model do
   let(:invalid_user) { build(:user, username: 'ruby', email: '', password: 'password')}
   let(:invalid_user2) { build(:user, username: "a" * 51, email: 'email', password: 'password')}
   let(:invalid_user3) { build(:user, profile: "a" * 501) }
+  let(:jone)   { create(:user) }
+  let(:michel) { create(:user) }
 
   it 'valid user' do
     user.valid?
@@ -30,5 +32,22 @@ RSpec.describe User, type: :model do
   it 'dependent destroy for post' do
     user.posts.create(content: 'content')
     expect{ user.destroy }.to change{ Post.count }.by(-1)
+  end
+
+  it 'follow method' do
+    expect(jone.following?(michel)).to be_falsey
+    jone.follow(michel)
+    expect(jone.following?(michel)).to be_truthy
+  end
+
+  it 'passive relation followers' do
+    jone.follow(michel)
+    expect(michel.followers.include?(jone)).to be_truthy
+  end
+
+  it 'unfollow method' do
+    jone.follow(michel)
+    jone.unfollow(michel)
+    expect(jone.following?(michel)).to be_falsey
   end
 end
