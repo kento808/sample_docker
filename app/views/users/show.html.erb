@@ -6,9 +6,12 @@
         <%= gravatar_for @user %>
         <%= @user.username %>
       </h1>
-      <p><%= @user.profile %></p>
       <section class="stats">
       <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <h5>profile</h5>
+        <p class= "profile"><%= @user.profile %></p>
       </section>
       <span><%= pluralize(@user.posts.count, "have posts") %></span>
       <% if current_user?(@user) %>
