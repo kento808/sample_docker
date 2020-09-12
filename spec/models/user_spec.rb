@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   let(:invalid_user3) { build(:user, profile: "a" * 501) }
   let(:jone)   { create(:user) }
   let(:michel) { create(:user) }
+  let(:post)   { create(:post) }
 
   it 'valid user' do
     user.valid?
@@ -49,5 +50,10 @@ RSpec.describe User, type: :model do
     jone.follow(michel)
     jone.unfollow(michel)
     expect(jone.following?(michel)).to be_falsey
+  end
+
+  it 'dependent destroy comment' do
+    @comment = Comment.create(user_id: user.id, post_id: post.id, comment: 'comment')
+    expect{ user.destroy }.to change{ Comment.count }.by(-1)
   end
 end

@@ -4,7 +4,9 @@
   <span class="content">
     <%= link_to post_path(post) do %>
     <%= post.content %>
-    <%= image_tag post.display_image if post.image.attached? %>
+    <div class ="image">
+      <%= image_tag post.display_image if post.image.attached? %>
+    </div>
     <% end %>
   </span>
   <span class="timestamp">

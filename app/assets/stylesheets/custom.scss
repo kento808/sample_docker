@@ -285,3 +285,51 @@ span.image {
     border: 0;
   }
 }
+/* post/show */
+.post-wrap .col-md-8 {
+  padding: 0px;
+}
+.card-right {
+  padding: 20px;
+  width: auto;
+}
+
+.card-right-name {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+}
+
+.card-right-comment {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  height: 320px;
+  overflow: auto;
+}
+
+.card-left {
+  margin-top: 15px;
+  border-top: 1px solid #e6e6e6;
+}
+
+.card-image {
+  padding-top: 15px;
+}
+
+.postShow-wrap {
+  margin: 40px;
+}
+
+.post-user-name {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.post-time {
+  color: blue;
+}
+/* comment */
+.delete-comment {
+  float: right;
+}

@@ -12,4 +12,12 @@ module LoginMacros
     click_on 'Log out'
     expect(page).to have_content 'Signed out successfully'
   end
+
+  def new_post
+    visit new_post_path
+    fill_in 'Content', with: 'test'
+    attach_file 'Image', "app/assets/images/course-1.png"
+    click_on 'Post'
+    find('.image').click
+  end
 end
