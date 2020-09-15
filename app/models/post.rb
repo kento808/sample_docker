@@ -10,6 +10,7 @@ class Post < ApplicationRecord
                                       message: "should be less than 5MB" }
 
   has_many :comments, dependent: :destroy
+  has_many :likes   , dependent: :destroy
 
   def display_image
     image.variant(resize_to_limit: [500, 500])
