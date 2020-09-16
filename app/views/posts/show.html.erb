@@ -36,6 +36,7 @@
             <%= f.submit "コメントする", class: "btn btn-info" %>
           <% end %>
         </div>
+        <%= render 'likes/like', post: @post %>
       </div>
     </div>
   </div>

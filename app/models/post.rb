@@ -11,8 +11,22 @@ class Post < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :likes   , dependent: :destroy
+  has_many :favorlit_users, through: :likes, source: :user
+
 
   def display_image
     image.variant(resize_to_limit: [500, 500])
+  end
+
+  def favorlit(user)
+    likes.create(user_id: user.id)
+  end
+
+  def unfavorlit(user)
+    likes.find_by(user_id: user.id).destroy
+  end
+
+  def favorlit?(user)
+    favorlit_users.include?(user)
   end
 end

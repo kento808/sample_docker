@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post.image.attach(params[:post][:image])
     if @post.save
       flash[:success] = "投稿しました！"
-      redirect_to root_url
+      redirect_to post_path(@post)
     else
       @feed_items = current_user.feed.page(params[:page])
       render 'posts/new'
