@@ -18,6 +18,5 @@ module LoginMacros
     fill_in 'Content', with: 'test'
     attach_file 'Image', "app/assets/images/course-1.png"
     click_on 'Post'
-    find('.image').click
   end
 end
