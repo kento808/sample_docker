@@ -23,4 +23,13 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
+
+  def search
+    @user_or_post = params[:option]
+    if @user_or_post == "1"
+      @users = User.search(params[:search], @user_or_post).page(params[:page]).per(20)
+    else
+      @posts = Post.search(params[:search], @user_or_post).page(params[:page]).per(20)
+    end
+  end
 end

@@ -29,4 +29,12 @@ class Post < ApplicationRecord
   def favorlit?(user)
     favorlit_users.include?(user)
   end
+
+  def Post.search(search, user_or_post)
+    if user_or_post == "2"
+       Post.where(['content LIKE ?', "%#{search}%"])
+    else
+       Post.all
+    end
+  end
 end

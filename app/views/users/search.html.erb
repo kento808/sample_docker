@@ -1,0 +1,18 @@
+<div class ="row">
+  <div class ="col-md-8 col-md-offset-2">
+    <% if @user_or_post == "1"%>
+      <div class ="users">
+        <h1>User</h1>
+        <%= render @users %>
+        <%= paginate @users %>
+      </div>
+    <% elsif @user_or_post == "2" %>
+      <div class ="posts">
+        <h1>Post</h1>
+        <%= render @posts %>
+        <%= paginate @posts %>
+      </div>
+    <% else %>
+    <% end %>
+  </div>
+</div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   root 'static_pages#home'
+  get 'search' => 'users#search'
   resources :users do
     member do
       get :following, :followers

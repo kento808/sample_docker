@@ -243,7 +243,6 @@ aside {
 }
 
 /* microposts */
-
 .microposts {
   list-style: none;
   padding: 0;
@@ -335,4 +334,8 @@ span.image {
 /* comment */
 .delete-comment {
   float: right;
+}
+/* search */
+.search {
+  width: 150px;
 }
