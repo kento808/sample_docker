@@ -12,6 +12,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes   , dependent: :destroy
   has_many :favorlit_users, through: :likes, source: :user
+  has_many :notifications , dependent: :destroy
 
 
   def display_image
