@@ -1,7 +1,10 @@
 <%= provide(:title, 'ユーザー一覧') %>
 <h1>Users</h1>
 <div class ="row">
-  <div class ="col-md-8 col-md-offset-2">
+  <div class ="col-md-3">
+    <%= render 'shared/search' %>
+  </div>
+  <div class ="col-md-9 ">
     <ul class ="users">
       <%= paginate @users %>
       <%= render @users %>

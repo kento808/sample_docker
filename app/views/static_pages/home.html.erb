@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-<div class="row">
+  <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
         <%= render 'shared/user_info' %>
@@ -10,22 +10,23 @@
       <section>
         <%= link_to '投稿する', new_post_path, class: "btn btn-info" %>
       </section>
+      <%= render 'shared/search' %>
     </aside>
     <div class="col-md-8">
       <h3>最近の投稿</h3>
       <%= render 'shared/feed' %>
     </div>
-</div>
+  </div>
 <% else %>
-<div class ="main" >
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading">沖縄観光のターミナル</h1>
-    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-    </p>
-  </main>
-  <h1>StaticPages#home</h1>
-  <p>Find me in app/views/static_pages/home.html.erb</p>
-</div>
+  <div class ="main" >
+    <main role="main" class="inner cover">
+      <h1 class="cover-heading">沖縄観光のターミナル</h1>
+      <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+      <p class="lead">
+        <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+      </p>
+    </main>
+    <h1>StaticPages#home</h1>
+    <p>Find me in app/views/static_pages/home.html.erb</p>
+  </div>
 <% end %>
