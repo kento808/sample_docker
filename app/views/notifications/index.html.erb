@@ -1,0 +1,12 @@
+<%= provide(:title, "Infomation") %>
+<div>
+  <h2 class="sub-title">Infomation</h2>
+  <% if @notifications.exists? %>
+    <div class="users-index">
+      <%= render @notifications %>
+      <%= paginate @notifications %>
+    </div>
+  <% else %>
+    <p>Not infomation</p>
+  <% end %>
+</div>
