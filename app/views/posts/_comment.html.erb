@@ -8,6 +8,6 @@
         <%= link_to comment.user.username, user_path(comment.user), class: "no-text-decoration black-color" %>
       </strong>
     </span>
-    <span><%= comment.comment %> <%= time_ago_in_words(comment.created_at)%> ago</span>
+    <span><%= comment.comment %> <i class ="time"><%= time_ago_in_words(comment.created_at)%></i> ago</span>
   </div>
 <% end %>

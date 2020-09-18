@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   before_action :correct_user,       only: :destroy
 
+  def index
+    @posts = current_user.liked_posts.page(params[:page]).per(20)
+  end
+
   def new
     @post = current_user.posts.build if user_signed_in?
   end
