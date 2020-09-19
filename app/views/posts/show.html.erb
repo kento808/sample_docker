@@ -3,8 +3,15 @@
 <div class ="row">
   <div class ="col-md-6">
     <div class ="card-left">
-        <%= image_tag @post.display_image, class: "card-image" %>
-      </div>
+      <%= image_tag @post.display_image, class: "card-image" %>
+    </div>
+    <div class="m-2">
+      <strong>
+        <%= @post.content %>
+        <div class="post-time"><%= time_ago_in_words(@post.created_at) %> ago</div>
+        <hr>
+      </strong>
+    </div>
   </div>
 
   <div class ="col-md-6">
@@ -17,13 +24,11 @@
             <strong><%= @post.user.username %></strong>
           <% end %>
         </div>
-        <div class="m-2">
-            <strong>
-              <%= @post.content %>
-              <div class="post-time"><%= time_ago_in_words(@post.created_at) %> ago</div>
-              <hr>
-            </strong>
+        <div>
+          <p>profile</p>
+          <hr />
         </div>
+
         <div id="comment-post-<%= @post.id.to_s %>">
           <%= render 'posts/comment', post: @post %>
         </div>
