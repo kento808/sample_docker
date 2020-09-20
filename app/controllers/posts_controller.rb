@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :correct_user,       only: :destroy
 
   def index
-    @posts = current_user.liked_posts.page(params[:page]).per(20)
+    @category = Category.find(params[:category_id])
+    @posts    = @category.posts.all.page(params[:page]).per(15)
   end
 
   def new
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:content, :image)
+      params.require(:post).permit(:content, :image, :category_id)
     end
 
     def correct_user

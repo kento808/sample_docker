@@ -10,8 +10,10 @@
       <section>
         <%= link_to '投稿する', new_post_path, class: "btn btn-success" %>
       </section>
-      <%= link_to "お気に入りの投稿一覧", posts_path, class: "btn btn-info" %>
+      <%= link_to "お気に入りの投稿一覧", likes_path, class: "btn btn-info" %>
       <%= render 'shared/search' %>
+
+      <%= render 'shared/category' %>
     </aside>
     <div class="col-md-8">
       <h3>最近の投稿</h3>

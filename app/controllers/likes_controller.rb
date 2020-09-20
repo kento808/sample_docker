@@ -1,6 +1,10 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @posts = current_user.liked_posts.page(params[:page]).per(20)
+  end
+
   def create
     @post = Post.find(params[:post_id])
     unless @post.favorlit?(current_user)

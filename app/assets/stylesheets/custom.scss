@@ -341,9 +341,21 @@ span.image {
 /* search */
 .search {
   width: 200px;
-  margin-top: 20px;
+  margin: 40px 0;
+  border: 1px solid gray;
+  padding: 15px;
 }
 /* notificaton */
 .clearfix {
   margin-bottom: 10px;
+}
+/* category */
+.categories {
+  
+  width: 200px;
+}
+.category {
+  margin: 20px 0 20px 30px;
+  font-weight: bold;
+  font-size: 1.3em;
 }
