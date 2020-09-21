@@ -17,6 +17,7 @@ module LoginMacros
     visit new_post_path
     fill_in 'Content', with: 'test'
     attach_file 'Image', "app/assets/images/course-1.png"
+    select 'レジャー', from: "post[category_id]"
     click_on 'Post'
   end
 end

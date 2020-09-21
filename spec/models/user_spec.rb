@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
   let(:jone)   { create(:user) }
   let(:michel) { create(:user) }
   let(:post)   { create(:post) }
+  let!(:category) { create(:category) }
 
   it 'valid user' do
     user.valid?
@@ -31,7 +32,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'dependent destroy for post' do
-    user.posts.create(content: 'content')
+    user.posts.create(content: 'content', category_id: category.id)
     expect{ user.destroy }.to change{ Post.count }.by(-1)
   end
 
@@ -55,5 +56,10 @@ RSpec.describe User, type: :model do
   it 'dependent destroy comment' do
     @comment = Comment.create(user_id: user.id, post_id: post.id, comment: 'comment')
     expect{ user.destroy }.to change{ Comment.count }.by(-1)
+  end
+
+  it 'dependent like' do
+    user.likes.create(user_id: user.id, post_id: post.id)
+    expect{ user.destroy }.to change{ Like.count }.by(-1)
   end
 end

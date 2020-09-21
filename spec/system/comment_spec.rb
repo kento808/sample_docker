@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature 'comment for post', type: :system do
-  let(:user) { create(:user) }
+  let(:user)      { create(:user) }
+  let!(:category) { create(:category) }
 
   scenario 'コメントを入力し送信するとコメントできる' do
     login(user)

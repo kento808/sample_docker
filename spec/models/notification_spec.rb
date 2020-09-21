@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  let(:jone)   { create(:user) }
-  let(:michel) { create(:user) }
-
+  
   before do
     @notice = Notification.new(visitor_id: 1, visited_id: 2, action: 'follow')
   end
