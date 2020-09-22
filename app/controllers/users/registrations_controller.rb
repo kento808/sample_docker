@@ -67,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     current_user.assign_attributes(account_update_params)
     if current_user.save
       flash[:info] = "編集しました！"
-	  redirect_to current_user
+	    redirect_to current_user
     else
       render "profile_edit"
     end

@@ -6,6 +6,7 @@
       <%= image_tag @post.display_image, class: "card-image" %>
     </div>
     <div class="m-2">
+      <p>投稿内容</p>
       <strong>
         <%= @post.content %>
         <div class="post-time"><%= time_ago_in_words(@post.created_at) %> ago</div>
@@ -16,33 +17,33 @@
 
   <div class ="col-md-6">
     <div class ="card-right">
+      <div class ="card-right-name">
+        <%= link_to user_path(@post.user), class: "black-color no-text-decoration post-user-name",
+            title: @post.user.username do %>
+          <%= gravatar_for @post.user, size: 50 %>
+          <strong><%= @post.user.username %></strong>
+        <% end %>
+      </div>
+      <div>
+        <strong><p>profile</p></strong>
+        <%= @post.user.profile %>
+        <hr />
+      </div>
       <div class ="card-right-comment">
-        <div class ="card-right-name">
-          <%= link_to user_path(@post.user), class: "black-color no-text-decoration post-user-name",
-              title: @post.user.username do %>
-            <%= gravatar_for @post.user, size: 50 %>
-            <strong><%= @post.user.username %></strong>
-          <% end %>
-        </div>
-        <div>
-          <p>profile</p>
-          <hr />
-        </div>
-
         <div id="comment-post-<%= @post.id.to_s %>">
           <%= render 'posts/comment', post: @post %>
         </div>
-        <div id="comment-form-post-<%= @post.id.to_s %>">
-          <%= form_with model: [@post, Comment.new],  class: "w-100" do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :post_id, value: @post.id %>
-            <%= f.text_field :comment, class: "form-control comment-input", placeholder: "コメント ...", autocomplete: :off,
-             id: "comment" %>
-            <%= f.submit "コメントする", class: "btn btn-info" %>
-          <% end %>
-        </div>
-        <%= render 'likes/like', post: @post %>
       </div>
+      <div id="comment-form-post-<%= @post.id.to_s %>">
+        <%= form_with model: [@post, Comment.new],  class: "w-100" do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.text_field :comment, class: "form-control comment-input", placeholder: "コメント ...", autocomplete: :off,
+           id: "comment" %>
+          <%= f.submit "コメントする", class: "btn btn-info" %>
+        <% end %>
+      </div>
+      <%= render 'likes/like', post: @post %>
     </div>
   </div>
 </div>

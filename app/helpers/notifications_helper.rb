@@ -14,8 +14,10 @@ module NotificationsHelper
       when "like" then
         "#{visitor}が#{your_post}にいいね！しました"
       when "comment" then
+         #unless notification.visitor_id == current_user.id
         @comment=Comment.find_by(id:notification.comment_id)&.comment
         "#{visitor}が#{your_post}にコメントしました"
+         #end
     end
   end
 end
