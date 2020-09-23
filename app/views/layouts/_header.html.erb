@@ -6,14 +6,11 @@
       <li class="p-2 text-dark">
         <%= link_to "Home", root_path %>
       </li>
-      <li class="p-2 text-dark">
-        <%= link_to "about", '#' %>
-      </li>
       <% if user_signed_in? %>
-      <li><%= link_to "check", notifications_path %>
+      <li><%= link_to "check", notifications_path, class: "check" %>
         <% if unchecked_notifications.any? %>
           <span class="fa">
-             <i class="fa fa-circle notification-circle"></i>
+            <i class="fa fa-bell faa-ring animated"></i>
           </span>
         <% end %>
       </li>
@@ -33,7 +30,7 @@
       </li>
       <% else %>
       <li class="p-2 text-dark">
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-primary" %>
       </li>
       <li class="p-2 text-dark">
         <%= link_to "login", new_user_session_path, class: "btn btn-primary" %>

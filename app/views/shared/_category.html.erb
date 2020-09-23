@@ -1,5 +1,9 @@
 <div class ="categories">
   <p class ="category">カテゴリー一覧</p>
-  <%= link_to 'レジャー', posts_path(category_id: 1) %><br />
-  <%= link_to 'グルメ',   posts_path(category_id: 2) %><br />
+  <ul>
+      <%= link_to 'レジャー', posts_path(category_id: 1) %><br />
+      <%= link_to 'グルメ',   posts_path(category_id: 2) %><br />
+      <%= link_to 'ホテル・施設系', posts_path(category_id: 3) %><br />
+      <%= link_to 'その他', posts_path(category_id: 4) %>
+  </ul>
 </div>

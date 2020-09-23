@@ -78,6 +78,15 @@ header {
 .dropdown-menu li {
   margin-left: 10px;
 }
+.fa {
+  position: absolute;
+}
+.fa-bell {
+  color: orange;
+  position: relative;
+  padding-left: 30px;
+  padding-bottom: 20px;
+}
 /* footer */
 footer {
   margin-top: 45px;
@@ -342,6 +351,7 @@ span.image {
 }
 .post-info {
   margin-bottom: 20px;
+  border-bottom: 1px solid #e6e6e6;
 }
 /* comment */
 .delete-comment {
@@ -361,6 +371,9 @@ span.image {
 /* category */
 .categories {
   width: 200px;
+}
+.categories ul {
+  font-size: 1.1em;
 }
 .category {
   margin: 20px 0 20px 30px;
