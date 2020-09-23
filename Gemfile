@@ -66,3 +66,4 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem "dotenv-rails"
+gem "geocoder"

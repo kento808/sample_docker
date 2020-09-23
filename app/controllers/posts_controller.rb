@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @category = Category.find(@post.category_id)
   end
 
   def create
@@ -35,7 +36,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:content, :image, :category_id)
+      params.require(:post).permit(:content, :image, :category_id, :address)
     end
 
     def correct_user

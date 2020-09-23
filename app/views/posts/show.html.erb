@@ -13,6 +13,8 @@
         <hr>
       </strong>
     </div>
+    <div class ="post-info"><p>所在地</p><%= @post.address %></div>
+    <div class ="post-info"><p>カテゴリ</p><%= @category.name %></div>
   </div>
 
   <div class ="col-md-6">
@@ -44,7 +46,7 @@
         <% end %>
       </div>
       <%= render 'likes/like', post: @post %>
-      <%= render 'posts/map' %>
+      <%= render 'posts/map', post: @post %>
     </div>
   </div>
 </div>

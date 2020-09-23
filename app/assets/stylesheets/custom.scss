@@ -305,7 +305,7 @@ span.image {
 .card-right-comment {
   padding-bottom: 10px;
   border-bottom: 1px solid #e6e6e6;
-  height: 320px;
+  height: 200px;
   overflow: auto;
 }
 
@@ -340,6 +340,9 @@ span.image {
 .m-2 {
   margin-top: 20px;
 }
+.post-info {
+  margin-bottom: 20px;
+}
 /* comment */
 .delete-comment {
   float: right;
@@ -357,7 +360,6 @@ span.image {
 }
 /* category */
 .categories {
-
   width: 200px;
 }
 .category {

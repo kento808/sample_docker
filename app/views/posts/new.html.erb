@@ -13,6 +13,9 @@
         <%= f.label :category_id, "カテゴリ" %>
         <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]},
           include_blank: "選択して下さい" %>
+
+        <%= f.label :address, "所在地" %>
+        <%= f.text_field :address %>
       </div>
       <%= f.submit "Post", class: "btn btn-primary" %>
     <% end %>
