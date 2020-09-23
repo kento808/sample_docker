@@ -2,8 +2,8 @@
   <%= link_to gravatar_for(post.user, size: 50), post.user %>
   <span class="user"><%= link_to post.user.username, post.user %></span>
   <span class="content">
+    <%= post.content %>
     <%= link_to post_path(post) do %>
-      <%= post.content %>
       <div class ="image">
         <%= image_tag post.display_image if post.image.attached? %>
       </div>

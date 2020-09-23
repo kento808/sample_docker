@@ -1,5 +1,6 @@
 #User.create!(username:  "Example User",
              #email: "example@railstutorial.org",
+             #profile:               "Hello world!",
              #password:              "foobar",
              #password_confirmation: "foobar")
 
@@ -10,20 +11,24 @@
   #password = "password"
   #User.create!(username:  username,
                #email: email,
+               #profile:               "Hello!",
                #password:              password,
                #password_confirmation: password)
 #end
 
 
-Category.create(name: 'レジャー')
-Category.create(name: 'グルメ')
-Category.create(name: 'ホテル・施設系')
-Category.create(name: 'その他')
+#Category.create(name: 'レジャー')
+#Category.create(name: 'グルメ')
+#Category.create(name: 'ホテル・施設系')
+#Category.create(name: 'その他')
 # ユーザーの一部を対象にマイクロポストを生成する
 users = User.order(:created_at).take(6)
 20.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(content: content, category_id: 1) }
+  users.each do |user| user.posts.create!(content: content, category_id: 1, address: '沖縄県　那覇市')
+  user.posts.each do |post| post.image.attach(io: File.open('app/assets/images/ishigakijimanoumi.jpg'), filename: 'ishigakijimanoumi.jpg')
+  end
+ end
 end
 
 users = User.all
