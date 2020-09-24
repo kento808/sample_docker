@@ -16,7 +16,12 @@ test:
   database: myapp_test
 
 production:
-    <<: *default
-    database: app_production
-    username: app
-    password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+#production:
+    #<<: *default
+    #database: app_production
+    #username: app
+    #password: <%= ENV['APP_DATABASE_PASSWORD'] %>
