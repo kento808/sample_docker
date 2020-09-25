@@ -1,26 +1,26 @@
-#User.create!(username:  "Example User",
-             #email: "example@railstutorial.org",
-             #profile:               "Hello world!",
-             #password:              "foobar",
-             #password_confirmation: "foobar")
+User.create!(username:  "Example User",
+             email: "example@railstutorial.org",
+             profile:               "Hello world!",
+             password:              "foobar",
+             password_confirmation: "foobar")
 
 # 追加のユーザーをまとめて生成する
-#99.times do |n|
-  #username  = Faker::Name.name
-  #email = "example-#{n+1}@railstutorial.org"
-  #password = "password"
-  #User.create!(username:  username,
-               #email: email,
-               #profile:               "Hello!",
-               #password:              password,
-               #password_confirmation: password)
-#end
+99.times do |n|
+  username  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(username:  username,
+               email: email,
+               profile:               "Hello!",
+               password:              password,
+               password_confirmation: password)
+end
 
 
-#Category.create(name: 'レジャー')
-#Category.create(name: 'グルメ')
-#Category.create(name: 'ホテル・施設系')
-#Category.create(name: 'その他')
+Category.create(name: 'レジャー')
+Category.create(name: 'グルメ')
+Category.create(name: 'ホテル・施設系')
+Category.create(name: 'その他')
 # ユーザーの一部を対象にマイクロポストを生成する
 users = User.order(:created_at).take(6)
 20.times do
