@@ -16,6 +16,10 @@ class PostsController < ApplicationController
     @category = Category.find(@post.category_id)
   end
 
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     @post.image.attach(params[:post][:image])
@@ -25,6 +29,16 @@ class PostsController < ApplicationController
     else
       @feed_items = current_user.feed.page(params[:page])
       render 'posts/new'
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:success] = '編集しました'
+      redirect_to root_path
+    else
+      remder 'edit'
     end
   end
 

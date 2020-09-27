@@ -1,5 +1,8 @@
 <%= provide(:title, 'show post') %>
 <h2>post detail</h2>
+<% if current_user?(@post.user) %>
+  <%= link_to '投稿を編集', edit_post_path, class: "btn btn-info" %>
+<% end %>
 <div class ="row">
   <div class ="col-md-6">
     <div class ="card-left">
@@ -16,7 +19,6 @@
     <div class ="post-info"><p>所在地</p><%= @post.address %></div>
     <div class ="post-info"><p>カテゴリ</p><%= @category.name %></div>
   </div>
-
   <div class ="col-md-6">
     <div class ="card-right">
       <div class ="card-right-name">

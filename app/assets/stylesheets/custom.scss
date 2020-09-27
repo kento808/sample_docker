@@ -380,3 +380,12 @@ span.image {
   font-weight: bold;
   font-size: 1.3em;
 }
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex {
+  width: 50%;
+  height: auto;
+  padding: 5px
+}

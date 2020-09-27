@@ -1,10 +1,13 @@
 <% provide(:title, @category.name) %>
 <div class ="row">
-  <div class ="col-md-6 col-md-offset-3">
+  <div class ="col-md-12">
     <h2><%= @category.name %>( <%= @posts.count %> )</h2>
     <% if @posts.any? %>
+      <%= paginate @posts %>
       <ol class ="micropost">
-        <%= render @posts %>
+        <div class ="box">
+          <%= render @posts %>
+        </div>
       </ol>
       <%= paginate @posts %>
     <% else %>
