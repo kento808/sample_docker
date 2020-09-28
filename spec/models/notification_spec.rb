@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  
   before do
     @notice = Notification.new(visitor_id: 1, visited_id: 2, action: 'follow')
   end

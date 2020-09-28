@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @category = Category.find(params[:category_id])
-    @posts    = @category.posts.all.page(params[:page]).per(15)
+    @posts    = @category.posts.all.page(params[:page]).per(15).order(created_at: 'DESC')
   end
 
   def new
@@ -49,12 +49,13 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:content, :image, :category_id, :address)
-    end
 
-    def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
-      redirect_to root_url if @post.nil?
-    end
+  def post_params
+    params.require(:post).permit(:content, :image, :category_id, :address)
+  end
+
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_url if @post.nil?
+  end
 end

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
         format.js
       end
     else
-        flash[:alert] = "コメントできませんでした。"
+      flash[:alert] = "コメントできませんでした。"
     end
   end
 
@@ -29,7 +29,8 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:user_id, :post_id, :comment)
-    end
+
+  def comment_params
+    params.require(:comment).permit(:user_id, :post_id, :comment)
+  end
 end

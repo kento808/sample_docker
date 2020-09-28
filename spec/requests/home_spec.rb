@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Staticpages/home', type: :request do
   describe 'home template' do
-
     let(:jone) { create(:user) }
 
     before do

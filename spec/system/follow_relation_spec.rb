@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'follow_relation', type: :system do
-
   let(:jone)   { create(:user) }
   let(:michel) { create(:user) }
 

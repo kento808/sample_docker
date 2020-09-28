@@ -27,7 +27,8 @@ RSpec.describe Comment, type: :model do
   end
 
   it 'dependent notification' do
-    @comment.notifications.create(visitor_id: user.id, visited_id: user2.id, comment_id: @comment.id, action: 'comment')
-    expect{ @comment.destroy }.to change{ Notification.count }.by(-1)
+    @comment.notifications.create(visitor_id: user.id, visited_id: user2.id,
+                                  comment_id: @comment.id, action: 'comment')
+    expect { @comment.destroy }.to change(Notification, :count).by(-1)
   end
 end

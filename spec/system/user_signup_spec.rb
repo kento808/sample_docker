@@ -10,7 +10,7 @@ RSpec.feature 'user_signup', type: :system do
     click_on 'Sign Up'
     expect(current_path).to eq new_user_registration_path
     fill_in 'Username', with: 'example'
-    fill_in 'Email'   , with: 'foo@co.jp'
+    fill_in 'Email', with: 'foo@co.jp'
     fill_in 'Password', with: '123456'
     fill_in 'Confirmation', with: '123456'
     click_on 'Create my account'
@@ -22,7 +22,7 @@ RSpec.feature 'user_signup', type: :system do
     click_on 'Sign Up'
     expect(current_path).to eq new_user_registration_path
     fill_in 'Username', with: 'example'
-    fill_in 'Email'   , with: ''
+    fill_in 'Email', with: ''
     fill_in 'Password', with: '123456'
     fill_in 'Confirmation', with: '123456'
     click_on 'Create my account'

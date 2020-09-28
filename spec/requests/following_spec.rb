@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'following', type: :request do
-
   let(:jone)   { create(:user) }
   let(:michel) { create(:user) }
 
   describe 'following page' do
-
     before do
       sign_in(jone)
       jone.follow(michel)

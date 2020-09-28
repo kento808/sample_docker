@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'post/edit', type: :system do
   let(:user) { create(:user) }
-  let(:post) { create(:post, id: 1, user_id: user.id)}
+  let(:post) { create(:post, id: 1, user_id: user.id) }
   let!(:category) { create(:category) }
 
   scenario '投稿詳細ページから投稿を編集できる' do

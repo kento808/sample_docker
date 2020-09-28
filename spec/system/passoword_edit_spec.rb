@@ -13,7 +13,7 @@ RSpec.feature 'password_edit', type: :system do
     expect(page).to have_content 'パスワード編集'
     fill_in '新しいパスワード', with: '12345678'
     fill_in '新しいパスワード(確認用)', with: '12345678'
-    fill_in '現在のパスワード',   with: user.password
+    fill_in '現在のパスワード', with: user.password
     click_on 'Update'
     expect(page).to have_content 'updated successfully.'
   end
@@ -23,7 +23,7 @@ RSpec.feature 'password_edit', type: :system do
     expect(page).to have_content 'パスワード編集'
     fill_in '新しいパスワード', with: nil
     fill_in '新しいパスワード(確認用)', with: '12345678'
-    fill_in '現在のパスワード',   with: user.password
+    fill_in '現在のパスワード', with: user.password
     click_on 'Update'
     expect(page).to have_content "Password can't be blank"
   end

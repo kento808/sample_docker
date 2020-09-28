@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-
   before do
     @category = Category.new(name: 'グルメ')
   end

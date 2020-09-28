@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'user_post', type: :system do
   given(:jone)   { create(:user) }
   given(:michel) { create(:user) }
-  given!(:category) { create(:category)}
+  given!(:category) { create(:category) }
 
   scenario '正しいユーザーの場合投稿できる' do
     login(jone)

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'user_login', type: :system do
-
   let(:user) { create(:user, email: 'test@co.jp', password: 'testuser') }
 
   background do

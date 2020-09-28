@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   let(:user) { create(:user) }
-  let(:invalid_user) { build(:user, username: 'ruby', email: '', password: 'password')}
-  let(:invalid_user2) { build(:user, username: "a" * 51, email: 'email', password: 'password')}
+  let(:invalid_user) { build(:user, username: 'ruby', email: '', password: 'password') }
+  let(:invalid_user2) { build(:user, username: "a" * 51, email: 'email', password: 'password') }
   let(:invalid_user3) { build(:user, profile: "a" * 501) }
   let(:jone)   { create(:user) }
   let(:michel) { create(:user) }
@@ -33,7 +32,7 @@ RSpec.describe User, type: :model do
 
   it 'dependent destroy for post' do
     user.posts.create(content: 'content', category_id: category.id)
-    expect{ user.destroy }.to change{ Post.count }.by(-1)
+    expect { user.destroy }.to change(Post, :count).by(-1)
   end
 
   it 'follow method' do
@@ -55,11 +54,11 @@ RSpec.describe User, type: :model do
 
   it 'dependent destroy comment' do
     @comment = Comment.create(user_id: user.id, post_id: post.id, comment: 'comment')
-    expect{ user.destroy }.to change{ Comment.count }.by(-1)
+    expect { user.destroy }.to change(Comment, :count).by(-1)
   end
 
   it 'dependent like' do
     user.likes.create(user_id: user.id, post_id: post.id)
-    expect{ user.destroy }.to change{ Like.count }.by(-1)
+    expect { user.destroy }.to change(Like, :count).by(-1)
   end
 end

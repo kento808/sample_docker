@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'user/index', type: :request do
-
-  let(:user)  { create(:user) }
+  let(:user) { create(:user) }
   let!(:users) { create_list(:user, 21) }
 
   describe 'index page' do

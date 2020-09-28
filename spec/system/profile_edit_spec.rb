@@ -24,7 +24,7 @@ RSpec.feature 'profile_edit', type: :system do
     expect(page).to have_link 'Setting'
     click_on 'Setting'
     expect(page).to have_content 'profile edit'
-    fill_in 'Username',    with: nil
+    fill_in 'Username', with: nil
     fill_in 'メールアドレス', with: nil
     click_on 'Update'
     expect(page).to have_content "Username can't be blank"
