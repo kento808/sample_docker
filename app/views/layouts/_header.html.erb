@@ -1,20 +1,20 @@
-<header class ="navbar navbar-fixed_top navbar-light" style="background-color: #e3f2fd;">
+<header class ="navbar navbar-fixed_top navbar-light" style="background-color: #3399ff;">
 <div class ="container">
   <%= link_to "walker", root_path, id: "logo" %>
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li class="p-2 text-dark">
-        <%= link_to "Home", root_path %>
+      <li>
+        <%= link_to "Home", root_path, id: "text" %>
       </li>
       <% if user_signed_in? %>
-      <li><%= link_to "check", notifications_path, class: "check" %>
+      <li><%= link_to "check", notifications_path, class: "check", id: "text" %>
         <% if unchecked_notifications.any? %>
           <span class="fa">
             <i class="fa fa-bell faa-ring animated"></i>
           </span>
         <% end %>
       </li>
-      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Users", users_path, id: "text" %></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Account <b class="caret"></b>
@@ -29,11 +29,11 @@
         </ul>
       </li>
       <% else %>
-      <li class="p-2 text-dark">
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-primary" %>
+      <li>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-primary", id: "text" %>
       </li>
-      <li class="p-2 text-dark">
-        <%= link_to "login", new_user_session_path, class: "btn btn-primary" %>
+      <li>
+        <%= link_to "login", new_user_session_path, class: "btn btn-primary", id: "text" %>
       </li>
       <% end %>
     </ul>
