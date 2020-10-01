@@ -10,14 +10,14 @@ jobs:
       - image: circleci/ruby:2.6.6-node # バージョンについては適宜変更
         environment:
           BUNDLE_PATH: vendor/bundle
-          BUNDLER_VERSION: 2.0.1
+          BUNDLER_VERSION: 2.1.4
       - image: circleci/postgres
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: "password"
     steps:
-      - run: gem install bundler -v $BUNDLER_VERSION
+      - run: gem install bundler -v 2.1.4
       - checkout
       - restore_cache:
           keys:
