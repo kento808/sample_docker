@@ -22,7 +22,7 @@ Category.create(name: 'グルメ')
 Category.create(name: 'ホテル・施設系')
 Category.create(name: 'その他')
 # ユーザーの一部を対象にマイクロポストを生成する
-users = User.order(:created_at).take(6)
+users = User.order(:created_at).take(2)
 20.times do
   content = Faker::Lorem.sentence(word_count: 5)
   users.each do |user| user.posts.create!(content: content, category_id: 1, address: '沖縄県　那覇市')

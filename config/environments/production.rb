@@ -110,15 +110,15 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.action_mailer.default_url_options = { :host => 'vast-ravine-63102.herokuapp.com' }
-
- config.action_mailer.delivery_method = :smtp
- config.action_mailer.smtp_settings = {
-   :user_name => ENV['SENDGRID_USERNAME'],
-   :password => ENV['SENDGRID_PASSWORD'],
-   :domain => "heroku.com",
-   :address => "smtp.sendgrid.net",
-   :port => 587,
-   :authentication => :plain,
-   :enable_starttls_auto => true
- }
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => "heroku.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

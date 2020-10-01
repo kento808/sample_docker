@@ -6,8 +6,10 @@ RSpec.feature 'user_signup', type: :system do
   end
 
   scenario '必要事項を入力しsign upすると成功する' do
-    expect(page).to have_link 'Sign Up'
-    click_on 'Sign Up'
+    within 'header' do
+      expect(page).to have_link 'Sign Up'
+      click_on 'Sign Up'
+    end
     expect(current_path).to eq new_user_registration_path
     fill_in 'Username', with: 'example'
     fill_in 'Email', with: 'foo@co.jp'
@@ -18,8 +20,10 @@ RSpec.feature 'user_signup', type: :system do
   end
 
   scenario '入力ミスがあるとsign up が成功しない' do
-    expect(page).to have_link 'Sign Up'
-    click_on 'Sign Up'
+    within 'header' do
+      expect(page).to have_link 'Sign Up'
+      click_on 'Sign Up'
+    end
     expect(current_path).to eq new_user_registration_path
     fill_in 'Username', with: 'example'
     fill_in 'Email', with: ''
