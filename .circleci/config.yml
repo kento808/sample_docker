@@ -11,7 +11,7 @@ jobs:
         environment:
           BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.0.1
-      - image: circleci/postgres:
+      - image: circleci/postgres
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: myapp_test
