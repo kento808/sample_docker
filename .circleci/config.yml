@@ -1,96 +1,85 @@
-version: 2
-jobs:
-  build:
-    parameters:
-      assets_precompile:
-        description: "Whether or not do assets:precompile"
-        type: boolean
-        default: false
-    docker:
-      - image: circleci/ruby:2.6.6-node # バージョンについては適宜変更
-        environment:
+version: 2 # CircleCI 2.0 を使用します
+jobs: # 一連のステップ
+  build: # ワークフローを使用しない実行では、エントリポイントとして `build` ジョブが必要です
+    parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
+    docker: # Docker でステップを実行します
+      - image: circleci/ruby:2.6.6-jessie-node # このイメージをすべての `steps` が実行されるプライマリ コンテナとして使用します
+        environment: # プライマリ コンテナの環境変数
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          BUNDLER_VERSION: 2.1.4
-      - image: circleci/postgres
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: myapp_test
-          POSTGRES_PASSWORD: "password"
-    steps:
-      - run: gem install bundler -v 2.1.4
-      - checkout
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-demo-ruby
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine # データベース イメージ
+        environment: # データベースの環境変数
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog
+          POSTGRES_PASSWORD: ""
+    steps: # 実行可能コマンドの集合
+      - checkout # ソース コードを作業ディレクトリにチェックアウトする特別なステップ
+
+      # Bundler のバージョンを指定します
+
+      - run:
+          name: Bundler の指定
+          command: bundle -v
+
+      # バンドル キャッシュを復元します
+      # 依存関係キャッシュについては https://circleci.com/ja/docs/2.0/caching/ をお読みください
+
       - restore_cache:
           keys:
-            - bundle-v2-{{ checksum "Gemfile.lock" }}
-            - yarn-v1-{{ checksum "yarn.lock" }}
-      - run: bin/bundle check || bin/bundle install --deployment
-      - run:
-          name: install yarn dependencies
-          command: bundle exec yarn install
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run: # Ruby の依存関係をインストールします
+          name: バンドル インストール
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      # Ruby の依存関係のバンドル キャッシュを保存します
+
       - save_cache:
-          key: bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+      # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
+
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+
+      - run:
+          name: Yarn のインストール
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Yarn または Webpacker のキャッシュを保存します
+
       - save_cache:
-          key: yarn-v1-{{ checksum "yarn.lock" }}
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-      - run:
-          command: bin/rake db:create db:migrate
-          environment:
-            RAILS_ENV: test
+            - ~/.cache/yarn
 
-      - run: bin/bundle exec rubocop
-      - run: bin/bundle exec rails_best_practices
-      - run: bundle exec brakeman -5 -A -w 1 -e -z
       - run:
-          name: run tests
+          name: DB の待機
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: データベースのセットアップ
+          command: bin/rails db:schema:load --trace
+
+      - run:
+          name: RSpec の並列実行
           command: |
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --format progress
-      - store_artifacts:
-          path: coverage
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+      # タイミング解析のテスト結果を保存します
 
-  deploy:
-    docker:
-      - image: circleci/ruby:2.6.6-node&nbsp;# バージョンについては適宜変更
-    working_directory: /tmp/repo
-    steps:
-      - checkout
-      - run:
-          name: 'Install Heroku CLI, if necessary'
-          command: |
-            if [[ $(command -v heroku) == "" ]]; then
-              curl https://cli-assets.heroku.com/install.sh | sh
-            else
-              echo "Heroku is already installed. No operation was performed."
-            fi
-      - run:
-          name: heroku maintenance on
-          command: heroku maintenance:on --app ${HEROKU_APP_NAME}
-      - run:
-          name: Deploy to Heroku_Production
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-      - run:
-          name: heroku maintenance off
-          command: heroku maintenance:off --app ${HEROKU_APP_NAME}
-
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build # デプロイ前に必ずテストを行う
-          filters:
-            branches:
-              only:
-                - master
+      - store_test_results: # テスト サマリー (https://circleci.com/ja/docs/2.0/collect-test-data/) に表示するテスト結果をアップロードします
+          path: test_results
