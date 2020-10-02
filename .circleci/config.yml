@@ -53,38 +53,23 @@ jobs:
 
     deploy:
       docker:
-        - image: circleci/ruby:2.6.6-node&nbsp;# バージョンについては適宜変更
-      working_directory: /tmp/repo
+        - image: buildpack-deps:trusty
       steps:
         - checkout
         - run:
-            name: 'Install Heroku CLI, if necessary'
-            command: |
-              if [[ $(command -v heroku) == "" ]]; then
-                curl https://cli-assets.heroku.com/install.sh | sh
-              else
-                echo "Heroku is already installed. No operation was performed."
-              fi
-        - run:
-            name: heroku maintenance on
-            command: heroku maintenance:on --app ${HEROKU_APP_NAME}
-        - run:
-            name: Deploy to Heroku_Production
+            name: Heroku への master のデプロイ
             command: |
               git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-        - run:
-            name: heroku maintenance off
-            command: heroku maintenance:off --app ${HEROKU_APP_NAME}
 
 workflows:
   version: 2
   build-deploy:
     jobs:
+
       - build
       - deploy:
           requires:
-            - build # デプロイ前に必ずテストを行う
+            - build
           filters:
             branches:
-              only:
-                - master
+              only: maste
