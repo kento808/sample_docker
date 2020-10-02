@@ -52,29 +52,29 @@ jobs:
           path: /tmp/test-results
 
     deploy:
-    docker:
-      - image: circleci/ruby:2.6.6-node&nbsp;# バージョンについては適宜変更
-    working_directory: /tmp/repo
-    steps:
-      - checkout
-      - run:
-          name: 'Install Heroku CLI, if necessary'
-          command: |
-            if [[ $(command -v heroku) == "" ]]; then
-              curl https://cli-assets.heroku.com/install.sh | sh
-            else
-              echo "Heroku is already installed. No operation was performed."
-            fi
-      - run:
-          name: heroku maintenance on
-          command: heroku maintenance:on --app ${HEROKU_APP_NAME}
-      - run:
-          name: Deploy to Heroku_Production
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-      - run:
-          name: heroku maintenance off
-          command: heroku maintenance:off --app ${HEROKU_APP_NAME}
+      docker:
+        - image: circleci/ruby:2.6.6-node&nbsp;# バージョンについては適宜変更
+      working_directory: /tmp/repo
+      steps:
+        - checkout
+        - run:
+            name: 'Install Heroku CLI, if necessary'
+            command: |
+              if [[ $(command -v heroku) == "" ]]; then
+                curl https://cli-assets.heroku.com/install.sh | sh
+              else
+                echo "Heroku is already installed. No operation was performed."
+              fi
+        - run:
+            name: heroku maintenance on
+            command: heroku maintenance:on --app ${HEROKU_APP_NAME}
+        - run:
+            name: Deploy to Heroku_Production
+            command: |
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+        - run:
+            name: heroku maintenance off
+            command: heroku maintenance:off --app ${HEROKU_APP_NAME}
 
 workflows:
   version: 2
