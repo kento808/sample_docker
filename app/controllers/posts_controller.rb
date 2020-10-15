@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user,       only: :destroy
+  before_action :correct_user, only: :destroy
 
   def index
     @category = Category.find(params[:category_id])
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
       flash[:success] = '編集しました'
       redirect_to root_path
     else
-      remder 'edit'
+      render 'edit'
     end
   end
 
